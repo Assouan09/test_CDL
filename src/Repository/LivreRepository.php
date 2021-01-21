@@ -48,7 +48,7 @@ class LivreRepository extends ServiceEntityRepository
                 $query = $query
                     ->andWhere('l.livre IN (:nom)')
                     ->setParameter('nom', $search->nom);
-                    // 
+                    // a
             }
             
             if(!empty($search->string)){
