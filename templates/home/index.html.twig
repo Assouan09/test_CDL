@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue !{% endblock %}
+
+{% block content %}
+        <div class="container text-center">
+            <h1> La bibliothèque Saint-Priest </h1>
+        </div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-2">
+                <h3>Filtrer</h3>
+                {{ form(search) }}
+                <br>
+            </div>
+            <div class="col-md-9">
+                <div class="text-right">
+                    <a href="{{ path('add_book') }}"> Ajouter un livre + </a><br>
+                </div>
+                <div class="row product-container">
+                    {% for livre in livres %}
+                    <div class="col-md-5">
+                        <div class="product-item text-center"> 
+                            {{ livre.livre }}
+                            {{ livre.date }}
+                            <br>
+                            <a href="{{ path('edit_livre', {'id' : livre.id }) }}" class="">Modifier</a>
+                            | <a href="{{ path('delete_livre', {'id' : livre.id }) }}" class="">Supprimer</a>
+                        </div>
+                        <br><br>
+                    </div>
+                    {% endfor %}
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </div>
+{% endblock %}
