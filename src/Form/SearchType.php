@@ -6,6 +6,7 @@ use App\Classe\Search;
 use App\Entity\Category;
 use App\Entity\Auteur;
 use App\Entity\Livre;
+use App\Form\LivreType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,14 +44,19 @@ class SearchType extends AbstractType
                 'expanded' => true
             ])
 
-            ->add('date', EntityType::class, [
-                'label' =>  'Titre de livre',
+            ->add('nom', EntityType::class, [
+                'label' =>  'Titre du livre',
                 'required' => false,
                 'class' => Livre::class,
                 'multiple' => true,
                 'expanded' => true
             ])
 
+            /*
+            ->add('date', LivreType::class, [
+                'label' =>  'Date de publication'
+            ])
+            */
             ->add('submit', SubmitType::class, [
                 'label' => 'Filtrer',
                 'attr' => [

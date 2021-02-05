@@ -50,10 +50,21 @@ class LivreRepository extends ServiceEntityRepository
                     ->setParameter('nom', $search->nom);
                     // a
             }
+
+            if(!empty($search->date)){
+                $query = $query
+                    ->andWhere('l.livre IN (:date)')
+                    ->setParameter('nom', $search->date);
+                    // a
+            }
+            
             
             if(!empty($search->string)){
                 $query = $query
                     ->andWhere('l.livre LIKE :string')
+                    ->andWhere('c.id = 1 OR c.id = 3')
+                    ->andWhere('a.naissance > :naissance')
+                    ->setParameter('naissance', '1970-12-31')
                     ->setParameter('string', "%{$search->string}%");
             }
 

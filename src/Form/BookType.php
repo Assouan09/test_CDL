@@ -18,14 +18,16 @@ class BookType extends AbstractType
     {
         $builder
             ->add('livre', TextType::class)
-            ->add('date', TextType::class,[
+            ->add('date', TextType::class, [
                 'label' => 'Année de parution',
                 'required' => false
             ])
-            ->add('auteur', AuteurType::class, [
-                'required' => false
-            ])
-            ->add('category', CategoryType::class)
+            ->add('auteur', AuteurType::class, array(
+                'data' => $options['auteur']
+            ))
+            ->add('category', CategoryType::class, array(
+                'data' => $options['category']
+            ))
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider mon livre',
                 'attr' => [

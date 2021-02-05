@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Form\BookType;
+use App\Form\LivreType;
 use App\Entity\Auteur;
 use App\Entity\Category;
 use App\Entity\Livre;
@@ -49,8 +49,14 @@ class HomeController extends AbstractController
     public function edit(Request $request, $id)
     {
         $livre = $this->entityManager->getRepository(Livre::class)->findOneById($id);
+        $category = $this->entityManager->getRepository(Category::class)->findOneById($livre->getCategory()->getId());
+        $auteur = $this->entityManager->getRepository(Category::class)->findOneById($livre->getAuteur()->getId());
         
-        $form = $this->createForm(BookType::class, $livre);
+        $form = $this->createForm(LivreType::class, $livre, array(
+            //'category' => $category,
+            //'auteur'   =>   $auteur
+        ));
+        //dd($form);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
